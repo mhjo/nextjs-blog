@@ -4,6 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 import Layout, { siteTitle } from "../components/layout";
 import { getSortedPostsData } from "../lib/posts";
 import Date from "../components/date";
+import { GetStaticProps } from "next";
 
 export default function Home({ allPostsData }) {
   // console.log(allPostsData);
@@ -42,7 +43,7 @@ export default function Home({ allPostsData }) {
 }
 
 // getStaticProps는 Next.js에게 이 페이지가 데이터 의존성을 가지고 있음을 알려준다.
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   // 외부 데이터 가져오기 - 파일 시스템, API, DB, etc.
   const allPostsData = getSortedPostsData();
 
@@ -52,7 +53,7 @@ export async function getStaticProps() {
       allPostsData,
     },
   };
-}
+};
 
 // Server Side Rendering
 // export async function getServerSideProps(context) {
